@@ -2,6 +2,7 @@
 
 #include <complex>
 #include <string>
+#include <vector>
 
 class HestonModel {
   public:
@@ -18,12 +19,9 @@ class HestonModel {
     HestonModel(double S0, double K, double T, double r, double v0,
                 double kappa, double theta, double sigma_v, double rho);
 
-    std::complex<double> charFunction(double omega) const;
+    double monteCarloPrice(int paths, int steps) const;
 
-    // Fourier transform for the calculation of the option price
-    double optionPrice() const;
-
-    double calculateGreeks(const std::string &greek) const;
-
-    void display() const;
+  private:
+    void generateCorNorms(std::vector<double> &z1, std::vector<double> &z2,
+                          int size) const;
 };
